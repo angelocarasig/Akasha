@@ -1,5 +1,5 @@
 {
-  "name": "eden",
+  "name": "akasha",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,6 +21,7 @@
     "@angular/router": "^16.2.0",
     "@ng-icons/core": "^25.4.0",
     "@ng-icons/feather-icons": "^25.4.0",
+    "epubjs": "^0.3.93",
     "rxjs": "~7.8.0",
     "theme-change": "^2.5.0",
     "tslib": "^2.3.0",

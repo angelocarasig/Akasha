@@ -27,15 +27,24 @@
     </div>
   </div>
 
-  <div class="navbar-center">
-    <a class="btn btn-ghost normal-case text-xl">Eden</a>
+  <div class="navbar-center" routerLink="">
+    <a class="btn btn-ghost normal-case text-xl">Akasha</a>
   </div>
 
   <div class="navbar-end">
+    <div id="area"></div>
+    <input type="file" #fileInput style="display:none;" (change)="handleFileInput($event)" accept=".epub">
+
+    <button class="btn btn-ghost btn-circle" (click)="fileInput.click()">
+      <ng-icon size="1rem" name="featherPlusCircle"></ng-icon>
+    </button>
+
     <app-theme-switcher></app-theme-switcher>
+
     <button class="btn btn-ghost btn-circle">
       <ng-icon size="1rem" name="featherSearch"></ng-icon>
     </button>
+
     <button class="btn btn-ghost btn-circle">
       <ng-icon size="1rem" name="featherSettings"></ng-icon>
     </button>

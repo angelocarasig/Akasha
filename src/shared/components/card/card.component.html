@@ -1,5 +1,5 @@
 <div [ngClass]="[viewMode === 'list' ? 'card-side w-fit' : 'w-[15rem]']" class="card card-compact bg-base-100 shadow-2xl">
-  <figure class="overflow-visible"><img class="image" src="/assets/sample.png" alt="Sample"/></figure>
+  <figure class="overflow-visible" (click)="openBook()"><img class="image" src="/assets/sample.png" alt="Sample"/></figure>
   <div class="card-body justify-between">
     <h2 class="card-title line-clamp-1">Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e</h2>
 

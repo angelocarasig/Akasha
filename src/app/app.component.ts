@@ -7,7 +7,7 @@ import { ThemeService } from '../shared/services/theme/theme.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Eden';
+  title = 'Akasha';
 
   constructor(private themeService: ThemeService) {}
 

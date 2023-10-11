@@ -1,0 +1,18 @@
+<shared-navbar></shared-navbar>
+
+<div class="book-container">
+  <div class="book" data-theme="dracula" id="book"></div>
+
+  <div class="join flex justify-center gap-2 pl-4 pr-4 pt-4">
+    <button class="btn btn-square btn-outline" (click)="previousPage()">
+      <ng-icon size="1rem" name="featherArrowLeft"></ng-icon>
+    </button>
+    <button class="btn btn-square btn-outline" (click)="nextPage()">
+      <ng-icon size="1rem" name="featherArrowRight"></ng-icon>
+    </button>
+  </div>
+
+  <div class="flex flex-col gap-2" >
+    <img class="image rounded-none" *ngFor="let image of imageUrls" [src]="image">
+  </div>
+</div>

@@ -11,13 +11,15 @@ import { AuthModule } from '../auth/auth.module';
 import { LibraryComponent } from './components/library/library.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NgIcon } from '@ng-icons/core';
+import { BookComponent } from './components/book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     LibraryComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
