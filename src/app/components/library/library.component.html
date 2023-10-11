@@ -1,5 +1,10 @@
+<app-toolbar
+  (handleListView)="toggleListView()"
+  (handleGridView)="toggleGridView()">
+</app-toolbar>
+
 <div class="library">
-  <shared-card></shared-card>
-  <shared-card></shared-card>
-  <shared-card></shared-card>
+  <shared-card [viewMode]="viewMode"></shared-card>
+  <shared-card [viewMode]="viewMode"></shared-card>
+  <shared-card [viewMode]="viewMode"></shared-card>
 </div>

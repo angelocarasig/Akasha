@@ -9,12 +9,15 @@ import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './components/main/main.component';
 import { AuthModule } from '../auth/auth.module';
 import { LibraryComponent } from './components/library/library.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { NgIcon } from '@ng-icons/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    LibraryComponent
+    LibraryComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +26,7 @@ import { LibraryComponent } from './components/library/library.component';
 
     SharedModule,
     AuthModule,
+    NgIcon,
   ],
   providers: [],
   bootstrap: [AppComponent]

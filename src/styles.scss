@@ -3,3 +3,19 @@
 @tailwind utilities;
 
 @import 'core';
+
+@layer components {
+  .image {
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    aspect-ratio: 12/16;
+    width: 12rem;
+    height: auto;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+}
