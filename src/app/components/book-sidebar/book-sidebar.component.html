@@ -34,7 +34,7 @@
         </button>
       </div>
 
-      <div class="flex flex-col gap-2 tab-content items-center">
+      <div class="flex flex-col gap-2 tab-content items-center p-8">
         <ng-container [ngSwitch]="activeTab">
           <ng-container *ngSwitchCase="'bookInfo'">
             <ng-container *ngTemplateOutlet="bookInfo"></ng-container>
@@ -53,12 +53,16 @@
 
 
 <ng-template #bookInfo>
-  <span>{{metadata.description}}</span>
-  <img class="image" [src]="coverUrl">
+  <span>{{ metadata.description }}</span>
+  <img *ngIf="coverUrl; else skeletonCover" class="image" [src]="coverUrl">
+</ng-template>
+
+<ng-template #skeletonCover>
+  <div class="artboard h-96 border-2 border-accent flex justify-center items-center">{{ metadata.title }}</div>
 </ng-template>
 
 <ng-template #tableOfContents>
-  <button class="btn" *ngFor="let item of toc; let i = index" (click)="navigateToSection(item.href)">{{ item.label }}</button>
+  <button class="btn btn-outline w-full" *ngFor="let item of toc; let i = index" (click)="navigateToSection(item.href)">{{ item.label }}</button>
 </ng-template>
 
 <ng-template #images>

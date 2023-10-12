@@ -13,7 +13,6 @@ export class BookSidebarComponent implements OnInit {
   @Input() imageUrls!: Array<any>;
   @Output() handleJumpToSection = new EventEmitter<string>();
 
-  tabs = ['Book Info', 'Table of Contents', 'Images'];
   activeTab: string = '';
 
   navigateToSection(href: string): void {

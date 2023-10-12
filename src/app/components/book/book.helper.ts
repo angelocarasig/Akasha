@@ -29,7 +29,7 @@ export class EpubHelper {
       }
     });
 
-    this._rendition.themes.select('light');
+    this._rendition.themes.select('default');
 
     this._rendition.display();
   }
@@ -75,8 +75,8 @@ export class EpubHelper {
   }
 
   private getCover(): Observable<string> {
-    return from(this._book.ready.then(() => this._book.packaging.coverPath))
-      .pipe(mergeMap(path => from(this._book.archive.createUrl(`/OEBPS/${path}`, {base64: false}))));
+    this._book.coverUrl().then((val) => console.log("Cover URL: ", val));
+    return from(this._book.coverUrl().then(val => val || ''));
   }
 
   /**
