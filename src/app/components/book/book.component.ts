@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { EpubHelper } from './book.helper';
 
@@ -27,22 +27,22 @@ export class BookComponent {
       this.epubHelper.initialize().subscribe(() => {
         if (!this.epubHelper) return;
 
-        console.log("Book: ", this.epubHelper.book);
+        console.log('Book: ', this.epubHelper.book);
 
         this.rendition = this.epubHelper.rendition;
-        console.log("Rendition: ", this.epubHelper.rendition);
+        console.log('Rendition: ', this.epubHelper.rendition);
 
         this.coverUrl = this.epubHelper.coverUrl;
-        console.log("Cover Url: ", this.epubHelper.coverUrl);
+        console.log('Cover Url: ', this.epubHelper.coverUrl);
 
         this.metadata = this.epubHelper.metadata;
-        console.log("Metadata: ", this.epubHelper.metadata);
+        console.log('Metadata: ', this.epubHelper.metadata);
 
         this.toc = this.epubHelper.toc;
-        console.log("ToC: ", this.epubHelper.toc);
+        console.log('ToC: ', this.epubHelper.toc);
 
         this.imageUrls = this.epubHelper.imageUrls;
-        console.log("Image Urls: ", this.epubHelper.imageUrls);
+        console.log('Image Urls: ', this.epubHelper.imageUrls);
 
         this.isLoading = false;
       });
@@ -58,10 +58,23 @@ export class BookComponent {
 
   previousPage(): void {
     this.epubHelper!.previousPage();
-
   }
 
   navigateToSection(href: string): void {
     this.epubHelper!.navigateToSection(href);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowLeft':
+        this.previousPage();
+        break;
+      case 'ArrowRight':
+        this.nextPage();
+        break;
+      default:
+        break;
+    }
   }
 }

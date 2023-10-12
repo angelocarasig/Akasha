@@ -14,6 +14,7 @@ export class BookSidebarComponent implements OnInit {
   @Output() handleJumpToSection = new EventEmitter<string>();
 
   activeTab: string = '';
+  currentDate = new Date();
 
   navigateToSection(href: string): void {
     this.handleJumpToSection.emit(href);

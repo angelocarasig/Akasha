@@ -9,7 +9,7 @@
       [imageUrls]="imageUrls"
       (handleJumpToSection)="navigateToSection($event)">
     </app-book-sidebar>
-    <div data-theme="dracula" id="book"></div>
+    <div id="book"></div>
   </div>
 
   <div class="join flex justify-center gap-2 pl-4 pr-4 pt-4">
@@ -27,17 +27,3 @@
     <span class="loading loading-ball loading-lg"></span>
   </div>
 </ng-template>
-
-<!--<pre>{{metadata | json}}</pre>-->
-
-<!--<div class="flex flex-col gap-2">-->
-<!--  <button class="btn" *ngFor="let item of toc; let i = index" (click)="navigateToSection(item.href)">{{ item.label }}</button>-->
-<!--</div>-->
-
-<!--<img class="image" [src]="coverUrl">-->
-
-<!--<hr/>-->
-
-<!--<div class="flex flex-col gap-2">-->
-<!--  <img class="image rounded-none" *ngFor="let image of imageUrls" [src]="image">-->
-<!--</div>-->

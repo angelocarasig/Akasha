@@ -1,19 +1,7 @@
-<!--<div class="drawer h-full w-1/12 z-10">-->
-<!--  <input id="my-drawer" type="checkbox" class="drawer-toggle"/>-->
-<!--  <div class="drawer-content">-->
-<!--    <label for="my-drawer" class="btn border-transparent h-full bg-base-100 hover:bg-base-500 rounded-none p-0.5 drawer-button">-->
-<!--      <ng-icon name="featherChevronRight"></ng-icon>-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="drawer-side">-->
-<!--    <div>Hello</div>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="drawer h-full w-1/12 z-10">
   <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
   <div class="drawer-content flex flex-col items-center justify-center">
-    <label for="my-drawer" class="btn border-transparent h-full bg-base-100 hover:bg-base-500 rounded-none p-0.5 drawer-button">
+    <label for="my-drawer" class="btn border-transparent btn-ghost h-full rounded-none p-0.5 drawer-button">
       <ng-icon name="featherChevronRight"></ng-icon>
     </label>
   </div>
@@ -34,7 +22,7 @@
         </button>
       </div>
 
-      <div class="flex flex-col gap-2 tab-content items-center p-8">
+      <div class="flex flex-col gap-4 tab-content items-center p-8">
         <ng-container [ngSwitch]="activeTab">
           <ng-container *ngSwitchCase="'bookInfo'">
             <ng-container *ngTemplateOutlet="bookInfo"></ng-container>
@@ -53,15 +41,26 @@
 
 
 <ng-template #bookInfo>
-  <span>{{ metadata.description }}</span>
   <img *ngIf="coverUrl; else skeletonCover" class="image" [src]="coverUrl">
-</ng-template>
+  <ng-template #skeletonCover>
+    <div class="artboard h-96 border-2 border-accent flex justify-center items-center">{{ metadata.title }}</div>
+  </ng-template>
 
-<ng-template #skeletonCover>
-  <div class="artboard h-96 border-2 border-accent flex justify-center items-center">{{ metadata.title }}</div>
+  <div class="metadata flex flex-col">
+    <h1 class="text-m font-bold">{{ metadata.title }}</h1>
+    <h1 class="text-s">{{ metadata.creator }}</h1>
+    <br/>
+    <h1 class="text-s">Published: {{ metadata.pubdate | date }}</h1>
+    <h1 class="text-s">Last Read: {{ currentDate | date }}</h1>
+
+    <div class="divider"></div>
+
+    <h1 class="text-m italic">{{ metadata.description || "No Description Provided." }}</h1>
+  </div>
 </ng-template>
 
 <ng-template #tableOfContents>
+  <h1 class="text-2xl font-bold">Table of Contents</h1>
   <button class="btn btn-outline w-full" *ngFor="let item of toc; let i = index" (click)="navigateToSection(item.href)">{{ item.label }}</button>
 </ng-template>
 

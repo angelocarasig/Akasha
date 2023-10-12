@@ -1,6 +1,7 @@
 import { filter, from, Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, tap, toArray } from 'rxjs/operators';
 import { Book } from 'epubjs';
+import { SpineItem } from 'epubjs/types/section';
 
 export class EpubHelper {
   private _book: Book;
@@ -12,26 +13,39 @@ export class EpubHelper {
 
   constructor(epub: any) {
     this._book = new Book(epub);
+
+    this._book.loaded.spine.then((values: any) => {
+      console.log("Spine Items: ", values.items);
+    })
+
     this._rendition = this._book.renderTo('book', {
       width: '100%',
-      height: '100%'
+      height: '100%',
+      flow: "scrolled"
     });
+
+    this._rendition.spread("none");
 
     this._rendition.themes.register('default', {
       'body': {
         'color': 'white',
         'background': 'black',
-        'font-family': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important'
+        'font-family': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important',
       },
       '.galley-rw': {
         'font-family': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important',
-        'text-align': 'initial'
+        'text-align': 'initial',
+        'padding': '1rem 0.5rem'
       }
     });
 
     this._rendition.themes.select('default');
 
     this._rendition.display();
+
+    this._rendition.on("relocated", (location: any) => {
+      console.log("Current location:", location);
+    });
   }
 
   /**

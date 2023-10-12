@@ -20,6 +20,7 @@ import {
 import { CardComponent } from './components/card/card.component';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
 import { RouterLink } from '@angular/router';
+import { StripWhitespacePipe } from './pipes/strip-whitespace/strip-whitespace.pipe';
 
 const icons = {
   featherAnchor,
@@ -43,11 +44,15 @@ const icons = {
   declarations: [
     NavbarComponent,
     CardComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    StripWhitespacePipe
   ],
   exports: [
     NavbarComponent,
-    CardComponent
+    CardComponent,
+
+    // Pipes
+    StripWhitespacePipe
   ],
   imports: [
     CommonModule,

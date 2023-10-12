@@ -1,5 +1,12 @@
 #book {
-  display: flex;
-  width: 90vw;
-  height: 80vh;
+  width: 100vw;
+  height: 85vh;
+
+  overflow-y: scroll;
+}
+
+::ng-deep .epub-container {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
