@@ -12,7 +12,25 @@ export class EpubHelper {
 
   constructor(epub: any) {
     this._book = new Book(epub);
-    this._rendition = this._book.renderTo('book');
+    this._rendition = this._book.renderTo('book', {
+      width: '100%',
+      height: '100%'
+    });
+
+    this._rendition.themes.register('default', {
+      'body': {
+        'color': 'white',
+        'background': 'black',
+        'font-family': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important'
+      },
+      '.galley-rw': {
+        'font-family': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important',
+        'text-align': 'initial'
+      }
+    });
+
+    this._rendition.themes.select('light');
+
     this._rendition.display();
   }
 
@@ -91,8 +109,7 @@ export class EpubHelper {
   navigateToSection(href: string): void {
     try {
       this._rendition.display(href);
-    }
-    catch (error) {
+    } catch (error) {
       console.error(`Failed to navigate to section ${href}:`, error);
     }
   }

@@ -13,7 +13,9 @@ import {
   featherSettings,
   featherSun,
   featherArrowRight,
-  featherArrowLeft
+  featherArrowLeft,
+  featherChevronRight,
+  featherImage, featherBookmark, featherFile
 } from '@ng-icons/feather-icons';
 import { CardComponent } from './components/card/card.component';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
@@ -30,7 +32,11 @@ const icons = {
   featherSettings,
   featherSun,
   featherArrowRight,
-  featherArrowLeft
+  featherArrowLeft,
+  featherChevronRight,
+  featherImage,
+  featherBookmark,
+  featherFile
 };
 
 @NgModule({

@@ -16,6 +16,8 @@ export class BookComponent {
   coverUrl: string = '';
   imageUrls: Array<any> = [];
 
+  isLoading: boolean = true;
+
   constructor(private router: Router) {
     try {
       const navigation = this.router.getCurrentNavigation();
@@ -41,6 +43,8 @@ export class BookComponent {
 
         this.imageUrls = this.epubHelper.imageUrls;
         console.log("Image Urls: ", this.epubHelper.imageUrls);
+
+        this.isLoading = false;
       });
     } catch (e) {
       console.error(e);
