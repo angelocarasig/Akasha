@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { EpubHelper } from './book.helper';
+
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
-export class BookComponent implements OnInit {
+export class BookComponent {
   epubHelper: EpubHelper | undefined;
   rendition: any;
-  images: Array<any> = [];
+  metadata: any;
+  toc: Array<any> = [];
+  coverUrl: string = '';
   imageUrls: Array<any> = [];
 
   constructor(private router: Router) {
@@ -19,46 +21,43 @@ export class BookComponent implements OnInit {
       const navigation = this.router.getCurrentNavigation();
       const epub = navigation?.extras.state?.['epub'];
       this.epubHelper = new EpubHelper(epub);
-    }
-    catch (e) {
+
+      this.epubHelper.initialize().subscribe(() => {
+        if (!this.epubHelper) return;
+
+        console.log("Book: ", this.epubHelper.book);
+
+        this.rendition = this.epubHelper.rendition;
+        console.log("Rendition: ", this.epubHelper.rendition);
+
+        this.coverUrl = this.epubHelper.coverUrl;
+        console.log("Cover Url: ", this.epubHelper.coverUrl);
+
+        this.metadata = this.epubHelper.metadata;
+        console.log("Metadata: ", this.epubHelper.metadata);
+
+        this.toc = this.epubHelper.toc;
+        console.log("ToC: ", this.epubHelper.toc);
+
+        this.imageUrls = this.epubHelper.imageUrls;
+        console.log("Image Urls: ", this.epubHelper.imageUrls);
+      });
+    } catch (e) {
       console.error(e);
       this.router.navigate(['/']);
     }
   }
 
-  ngOnInit() {
-    try {
-      this.processImages();
-
-      this.rendition = this.epubHelper!.getRendition('book');
-    }
-    catch (e) {
-      console.error(e);
-    }
-  }
-
-  processImages(): void {
-    this.epubHelper!.getImages().subscribe({
-      next: async (images) => {
-        this.images = images;
-        console.log("Images: ", this.images);
-
-        this.epubHelper!.getImageUrls(images).subscribe(urls => {
-          this.imageUrls = urls.reverse();
-          console.log('Image URLs: ', this.imageUrls);
-        });
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
-
   nextPage(): void {
-    this.rendition.next();
+    this.epubHelper!.nextPage();
   }
 
   previousPage(): void {
-    this.rendition.prev();
+    this.epubHelper!.previousPage();
+
+  }
+
+  navigateToSection(href: string): void {
+    this.epubHelper!.navigateToSection(href);
   }
 }

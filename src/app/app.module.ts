@@ -12,6 +12,7 @@ import { LibraryComponent } from './components/library/library.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NgIcon } from '@ng-icons/core';
 import { BookComponent } from './components/book/book.component';
+import { BookSidebarComponent } from './components/book-sidebar/book-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BookComponent } from './components/book/book.component';
     MainComponent,
     LibraryComponent,
     ToolbarComponent,
-    BookComponent
+    BookComponent,
+    BookSidebarComponent
   ],
   imports: [
     BrowserModule,

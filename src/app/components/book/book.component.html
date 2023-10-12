@@ -1,6 +1,7 @@
 <shared-navbar></shared-navbar>
 
 <div class="book-container">
+  <app-book-sidebar></app-book-sidebar>
   <div class="book" data-theme="dracula" id="book"></div>
 
   <div class="join flex justify-center gap-2 pl-4 pr-4 pt-4">
@@ -11,6 +12,18 @@
       <ng-icon size="1rem" name="featherArrowRight"></ng-icon>
     </button>
   </div>
+
+  <pre>
+    {{metadata | json}}
+  </pre>
+
+  <div class="flex flex-col gap-2" >
+    <button class="btn"  *ngFor="let item of toc; let i = index" (click)="navigateToSection(item.href)">{{ item.label }}</button>
+  </div>
+
+  <img class="image" [src]="coverUrl">
+
+  <hr/>
 
   <div class="flex flex-col gap-2" >
     <img class="image rounded-none" *ngFor="let image of imageUrls" [src]="image">
